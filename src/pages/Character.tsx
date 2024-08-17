@@ -1,12 +1,12 @@
 import { useQuery } from "@apollo/client";
-import { Link, RouteComponentProps } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import { CHARACTER } from "src/constants/query";
 
-interface Props extends RouteComponentProps<{ id: string }> {}
+export const Character: React.FC = () => {
+  const params = useParams();
 
-export const Character: React.FC<Props> = ({ match }) => {
   const { loading, error, data } = useQuery(CHARACTER, {
-    variables: { id: match.params.id },
+    variables: { id: params.id },
   });
 
   if (loading) return <p>Loading</p>;
